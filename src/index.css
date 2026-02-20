@@ -1,1 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@layer base {
+  body {
+    @apply min-h-dvh overflow-y-scroll bg-slate-200 antialiased;
+  }
+}
