@@ -1,4 +1,5 @@
 import { CreateTask } from './components/CreateTask';
+import { Search } from './components/Search';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
           To-do List
         </h1>
         <CreateTask />
+        <Search />
       </div>
     </main>
   );
