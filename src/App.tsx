@@ -1,5 +1,6 @@
 import { CreateTask } from './components/CreateTask';
 import { Search } from './components/Search';
+import { Filter } from './components/Filter';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         </h1>
         <CreateTask />
         <Search />
+        <Filter />
       </div>
     </main>
   );
