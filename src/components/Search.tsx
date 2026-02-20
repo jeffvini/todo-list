@@ -2,7 +2,7 @@ export function Search() {
   return (
     <section
       aria-labelledby="search-title"
-      className="mt-4 flex flex-col gap-3 border-b-2 border-b-slate-400 pb-9"
+      className="mt-4 flex flex-col gap-3 border-b-2 border-b-slate-400 pb-7"
     >
       <h2
         id="search-title"
