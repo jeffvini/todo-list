@@ -2,7 +2,7 @@ export function Filter() {
   return (
     <section
       aria-labelledby="filter-title"
-      className="mt-6 flex flex-col gap-4"
+      className="mt-6 flex flex-col gap-4 border-b-2 border-b-slate-400 pb-7"
     >
       <h2
         id="filter-title"
