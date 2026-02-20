@@ -13,8 +13,9 @@ export function Search() {
       <input
         type="text"
         placeholder="Search task..."
-        aria-label="Search task"
-        className="w-full rounded-md border-2 border-slate-300 bg-white px-2.5 py-1 transition-colors outline-none placeholder:text-slate-400 placeholder:italic focus:border-slate-500"
+        aria-labelledby="search-title"
+        aria-controls="task-list"
+        className="h-9 w-full rounded-md border-2 border-slate-300 bg-white px-2.5 transition-colors outline-none placeholder:text-slate-400 placeholder:italic focus:border-slate-500"
       />
     </section>
   );
