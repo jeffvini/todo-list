@@ -12,7 +12,7 @@ export function CreateTask() {
       </h2>
       <input
         type="text"
-        placeholder="Enter the title"
+        placeholder="Enter the title..."
         aria-label="Enter the task title"
         className="h-9 w-full rounded-md border-2 border-slate-300 bg-white px-2.5 transition-colors outline-none placeholder:text-slate-400 placeholder:italic focus:border-slate-500"
       />
