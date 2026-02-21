@@ -1,3 +1,5 @@
+import { CreateTask } from './components/CreateTask';
+
 function App() {
   return (
     <main className="flex min-h-dvh w-full items-center justify-center px-4 py-6">
@@ -5,6 +7,7 @@ function App() {
         <h1 className="text-center text-[clamp(2.2rem,5vw,2.8rem)] font-semibold tracking-tight text-slate-800">
           To-do List
         </h1>
+        <CreateTask />
       </div>
     </main>
   );
