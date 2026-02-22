@@ -1,4 +1,5 @@
 import { CreateTask } from './components/CreateTask';
+import { TaskFilters } from './components/TaskFilters';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
           To-do List
         </h1>
         <CreateTask />
+        <TaskFilters />
       </div>
     </main>
   );
