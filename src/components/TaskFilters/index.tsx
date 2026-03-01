@@ -14,11 +14,13 @@ export function TaskFilters() {
       >
         Filter Tasks
       </h2>
-      <SearchField />
-      <div className="flex gap-6">
-        <StatusSelect />
-        <SortButtons />
-      </div>
+      <form className="flex flex-col gap-4">
+        <SearchField />
+        <div className="flex gap-6">
+          <StatusSelect />
+          <SortButtons />
+        </div>
+      </form>
     </section>
   );
 }
