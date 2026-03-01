@@ -1,3 +1,5 @@
+import { Trash2 } from 'lucide-react';
+
 interface TaskItemProps {
   title: string;
   category: string;
@@ -21,9 +23,9 @@ export function TaskItem({ title, category }: TaskItemProps) {
       <button
         type="button"
         aria-label="Delete task"
-        className="h-8 w-8 cursor-pointer rounded-lg pb-1 text-center text-2xl leading-none font-bold text-red-400 transition-all hover:bg-red-400 hover:text-slate-100 active:scale-95"
+        className="cursor-pointer rounded-lg bg-transparent p-1.5 text-red-400 transition-all hover:bg-red-400 hover:text-white active:scale-95"
       >
-        &times;
+        <Trash2 className="size-5" />
       </button>
     </li>
   );
