@@ -1,8 +1,10 @@
 import { useState, useRef } from 'react';
 
+import type { CreateTaskProps } from '../interfaces/CreateTaskProps';
+
 import { X } from 'lucide-react';
 
-export function CreateTask() {
+export function CreateTask({ onSubmit }: CreateTaskProps) {
   const [title, setTitle] = useState<string>('');
   const [category, setCategory] = useState<string>('');
 
@@ -21,6 +23,19 @@ export function CreateTask() {
     setCategory(e.target.value);
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (title.trim() !== '' && category !== '') {
+      onSubmit(title.trim(), category);
+
+      setTitle('');
+      setCategory('');
+
+      inputRef.current?.focus();
+    }
+  };
+
   return (
     <section
       aria-labelledby="create-task-title"
@@ -32,7 +47,7 @@ export function CreateTask() {
       >
         Create Task
       </h2>
-      <form className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex h-9 w-full items-center gap-2 rounded-md border-2 border-slate-300 bg-white pr-1 pl-2.5 transition-colors focus-within:border-slate-500">
           <input
             type="text"
