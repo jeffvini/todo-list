@@ -27,7 +27,7 @@ function App() {
         </h1>
         <CreateTask onSubmit={handleAddTask} />
         <TaskFilters />
-        <TaskList />
+        <TaskList tasks={tasks} />
       </div>
     </main>
   );
