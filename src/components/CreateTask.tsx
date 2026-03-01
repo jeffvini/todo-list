@@ -1,40 +1,19 @@
-import { useState, useRef } from 'react';
+import { useCreateTask } from '../custom-hooks/useCreateTask';
 
 import type { CreateTaskProps } from '../interfaces/CreateTaskProps';
 
 import { X } from 'lucide-react';
 
 export function CreateTask({ onSubmit }: CreateTaskProps) {
-  const [title, setTitle] = useState<string>('');
-  const [category, setCategory] = useState<string>('');
-
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
-  const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-
-  const handleClearInput = () => {
-    setTitle('');
-    inputRef.current?.focus();
-  };
-
-  const handleChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(e.target.value);
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (title.trim() !== '' && category !== '') {
-      onSubmit(title.trim(), category);
-
-      setTitle('');
-      setCategory('');
-
-      inputRef.current?.focus();
-    }
-  };
+  const {
+    title,
+    category,
+    inputRef,
+    handleChangeTitle,
+    handleChangeCategory,
+    handleClearInput,
+    handleSubmit,
+  } = useCreateTask(onSubmit);
 
   return (
     <section
