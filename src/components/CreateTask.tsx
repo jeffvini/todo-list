@@ -1,6 +1,21 @@
+import { useState, useRef } from 'react';
+
 import { X } from 'lucide-react';
 
 export function CreateTask() {
+  const [title, setTitle] = useState<string>('');
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
+  const handleClearInput = () => {
+    setTitle('');
+    inputRef.current?.focus();
+  };
+
   return (
     <section
       aria-labelledby="create-task-title"
@@ -16,19 +31,24 @@ export function CreateTask() {
         <div className="flex h-9 w-full items-center gap-2 rounded-md border-2 border-slate-300 bg-white pr-1 pl-2.5 transition-colors focus-within:border-slate-500">
           <input
             type="text"
+            ref={inputRef}
+            value={title}
+            onChange={handleChangeTitle}
             required
-            name="taskTitle"
             placeholder="Enter the title..."
             aria-label="Enter the task title"
             className="flex-1 outline-none placeholder:text-slate-400 placeholder:italic"
           />
-          <button
-            type="button"
-            aria-label="Clear task title"
-            className="cursor-pointer rounded-full p-1.5 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-600"
-          >
-            <X className="size-4" />
-          </button>
+          {title.trim() !== '' && (
+            <button
+              type="button"
+              onClick={handleClearInput}
+              aria-label="Clear task title"
+              className="cursor-pointer rounded-full p-1.5 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-600"
+            >
+              <X className="size-4" />
+            </button>
+          )}
         </div>
         <select
           required
