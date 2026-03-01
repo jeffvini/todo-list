@@ -1,3 +1,5 @@
+import { X } from 'lucide-react';
+
 export function CreateTask() {
   return (
     <section
@@ -11,14 +13,23 @@ export function CreateTask() {
         Create Task
       </h2>
       <form className="flex flex-col gap-4">
-        <input
-          type="text"
-          required
-          name="taskTitle"
-          placeholder="Enter the title..."
-          aria-label="Enter the task title"
-          className="h-9 w-full rounded-md border-2 border-slate-300 bg-white px-2.5 transition-colors outline-none placeholder:text-slate-400 placeholder:italic focus:border-slate-500"
-        />
+        <div className="flex h-9 w-full items-center gap-2 rounded-md border-2 border-slate-300 bg-white pr-1 pl-2.5 transition-colors focus-within:border-slate-500">
+          <input
+            type="text"
+            required
+            name="taskTitle"
+            placeholder="Enter the title..."
+            aria-label="Enter the task title"
+            className="flex-1 outline-none placeholder:text-slate-400 placeholder:italic"
+          />
+          <button
+            type="button"
+            aria-label="Clear task title"
+            className="cursor-pointer rounded-full p-1.5 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-600"
+          >
+            <X className="size-4" />
+          </button>
+        </div>
         <select
           required
           name="taskCategory"
