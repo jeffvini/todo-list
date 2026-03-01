@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 
 export function CreateTask() {
   const [title, setTitle] = useState<string>('');
+  const [category, setCategory] = useState<string>('');
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -14,6 +15,10 @@ export function CreateTask() {
   const handleClearInput = () => {
     setTitle('');
     inputRef.current?.focus();
+  };
+
+  const handleChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategory(e.target.value);
   };
 
   return (
@@ -52,9 +57,9 @@ export function CreateTask() {
         </div>
         <select
           required
-          name="taskCategory"
+          value={category}
+          onChange={handleChangeCategory}
           aria-label="Task category"
-          defaultValue=""
           className="h-9 w-full cursor-pointer rounded-md border-2 border-slate-300 bg-white px-1.5 text-sm transition-colors outline-none focus:border-slate-500"
         >
           <option value="" disabled hidden>
