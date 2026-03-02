@@ -1,4 +1,16 @@
-export function StatusSelect() {
+import type { StatusSelectProps } from '../../interfaces/StatusSelectProps';
+
+export function StatusSelect({
+  filterStatus,
+  onChangeStatus,
+}: StatusSelectProps) {
+  const handleChangeStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+
+    if (value === 'all' || value === 'completed' || value === 'pending') {
+      onChangeStatus(value);
+    }
+  };
   return (
     <div className="flex flex-1 flex-col gap-3">
       <label
@@ -9,7 +21,8 @@ export function StatusSelect() {
       </label>
       <select
         name="status"
-        defaultValue="all"
+        value={filterStatus}
+        onChange={handleChangeStatus}
         id="filter-status"
         aria-controls="task-list"
         className="h-9 cursor-pointer rounded-md border-2 border-slate-300 bg-white px-1.5 text-sm transition-colors outline-none focus:border-slate-500"
