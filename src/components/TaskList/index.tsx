@@ -9,9 +9,19 @@ export function TaskList({ tasks }: TaskListProps) {
         My Tasks
       </h2>
       <ul id="task-list" aria-live="polite" className="flex flex-col gap-4">
-        {tasks.map((task) => (
-          <TaskItem key={task.id} title={task.title} category={task.category} />
-        ))}
+        {tasks.length > 0 ? (
+          tasks.map((task) => (
+            <TaskItem
+              key={task.id}
+              title={task.title}
+              category={task.category}
+            />
+          ))
+        ) : (
+          <p className="text-center text-[clamp(1.6rem,5vw,2rem)] font-medium text-slate-500">
+            No tasks found.
+          </p>
+        )}
       </ul>
     </section>
   );
