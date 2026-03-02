@@ -19,6 +19,14 @@ function App() {
     setTasks((prev) => [...prev, newTask]);
   };
 
+  const handleToggleDone = (id: string) => {
+    setTasks((prev) =>
+      prev.map((task) =>
+        task.id === id ? { ...task, isDone: !task.isDone } : task,
+      ),
+    );
+  };
+
   return (
     <main className="flex min-h-dvh w-full items-center justify-center px-4 py-6">
       <div className="w-full max-w-2xl rounded-xl bg-slate-100 p-6 shadow-[0_0_20px_4px_rgba(30,41,59,0.15)]">
@@ -27,7 +35,7 @@ function App() {
         </h1>
         <CreateTask onSubmit={handleAddTask} />
         <TaskFilters />
-        <TaskList tasks={tasks} />
+        <TaskList tasks={tasks} onToggleDone={handleToggleDone} />
       </div>
     </main>
   );
