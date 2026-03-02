@@ -1,7 +1,7 @@
 import type { Task } from './Task';
 
-export interface TaskListProps {
-  tasks: Task[];
+export interface TaskItemProps {
+  task: Task;
   onToggleDone: (id: string) => void;
   onDeleteTask: (id: string) => void;
 }
