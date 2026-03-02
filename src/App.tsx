@@ -8,6 +8,7 @@ import { TaskList } from './components/TaskList';
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [search, setSearch] = useState<string>('');
 
   const handleAddTask = (title: string, category: string) => {
     const newTask: Task = {
@@ -38,7 +39,7 @@ function App() {
           To-do List
         </h1>
         <CreateTask onSubmit={handleAddTask} />
-        <TaskFilters />
+        <TaskFilters search={search} onChangeSearch={setSearch} />
         <TaskList
           tasks={tasks}
           onToggleDone={handleToggleDone}
