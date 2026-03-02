@@ -19,6 +19,10 @@ function App() {
     setTasks((prev) => [...prev, newTask]);
   };
 
+  const handleDeleteTask = (id: string) => {
+    setTasks((prev) => prev.filter((task) => task.id !== id));
+  };
+
   const handleToggleDone = (id: string) => {
     setTasks((prev) =>
       prev.map((task) =>
@@ -35,7 +39,11 @@ function App() {
         </h1>
         <CreateTask onSubmit={handleAddTask} />
         <TaskFilters />
-        <TaskList tasks={tasks} onToggleDone={handleToggleDone} />
+        <TaskList
+          tasks={tasks}
+          onToggleDone={handleToggleDone}
+          onDeleteTask={handleDeleteTask}
+        />
       </div>
     </main>
   );
