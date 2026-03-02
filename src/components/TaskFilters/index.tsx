@@ -1,8 +1,10 @@
+import type { TaskFiltersProps } from '../../interfaces/TaskFiltersProps';
+
 import { SearchField } from './SearchField';
 import { StatusSelect } from './StatusSelect';
 import { SortButtons } from './SortButtons';
 
-export function TaskFilters() {
+export function TaskFilters({ search, onChangeSearch }: TaskFiltersProps) {
   return (
     <section
       aria-labelledby="filter-title"
@@ -15,7 +17,7 @@ export function TaskFilters() {
         Filter Tasks
       </h2>
       <form className="flex flex-col gap-4">
-        <SearchField />
+        <SearchField search={search} onChangeSearch={onChangeSearch} />
         <div className="flex gap-6">
           <StatusSelect />
           <SortButtons />
