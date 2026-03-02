@@ -2,9 +2,13 @@ import type { TaskItemProps } from '../../interfaces/TaskItemProps';
 
 import { Trash2 } from 'lucide-react';
 
-export function TaskItem({ task, onToggleDone }: TaskItemProps) {
+export function TaskItem({ task, onToggleDone, onDeleteTask }: TaskItemProps) {
   const handleToggleDone = () => {
     onToggleDone(task.id);
+  };
+
+  const handleDeleteTask = () => {
+    onDeleteTask(task.id);
   };
 
   return (
@@ -31,6 +35,7 @@ export function TaskItem({ task, onToggleDone }: TaskItemProps) {
       </label>
       <button
         type="button"
+        onClick={handleDeleteTask}
         aria-label="Delete task"
         className="cursor-pointer rounded-lg bg-transparent p-1.5 text-red-400 transition-all hover:bg-red-400 hover:text-white active:scale-95"
       >
