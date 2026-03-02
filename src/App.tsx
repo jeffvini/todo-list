@@ -10,6 +10,10 @@ function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [search, setSearch] = useState<string>('');
 
+  const filteredTasks = tasks.filter((task) =>
+    task.title.toLowerCase().includes(search.trim().toLowerCase()),
+  );
+
   const handleAddTask = (title: string, category: string) => {
     const newTask: Task = {
       id: crypto.randomUUID(),
@@ -41,7 +45,7 @@ function App() {
         <CreateTask onSubmit={handleAddTask} />
         <TaskFilters search={search} onChangeSearch={setSearch} />
         <TaskList
-          tasks={tasks}
+          tasks={filteredTasks}
           onToggleDone={handleToggleDone}
           onDeleteTask={handleDeleteTask}
         />
