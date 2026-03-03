@@ -4,7 +4,12 @@ import { SearchField } from './SearchField';
 import { StatusSelect } from './StatusSelect';
 import { SortButtons } from './SortButtons';
 
-export function TaskFilters({ search, onChangeSearch }: TaskFiltersProps) {
+export function TaskFilters({
+  search,
+  filterStatus,
+  onChangeSearch,
+  onChangeStatus,
+}: TaskFiltersProps) {
   return (
     <section
       aria-labelledby="filter-title"
@@ -19,7 +24,10 @@ export function TaskFilters({ search, onChangeSearch }: TaskFiltersProps) {
       <form className="flex flex-col gap-4">
         <SearchField search={search} onChangeSearch={onChangeSearch} />
         <div className="flex gap-6">
-          <StatusSelect />
+          <StatusSelect
+            filterStatus={filterStatus}
+            onChangeStatus={onChangeStatus}
+          />
           <SortButtons />
         </div>
       </form>

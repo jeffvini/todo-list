@@ -9,10 +9,22 @@ import { TaskList } from './components/TaskList';
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [search, setSearch] = useState<string>('');
+  const [filterStatus, setFilterStatus] = useState<
+    'all' | 'completed' | 'pending'
+  >('all');
 
-  const filteredTasks = tasks.filter((task) =>
-    task.title.toLowerCase().includes(search.trim().toLowerCase()),
-  );
+  const filteredTasks = tasks.filter((task) => {
+    const matchesSearch = task.title
+      .toLowerCase()
+      .includes(search.trim().toLowerCase());
+
+    const matchesStatus =
+      filterStatus === 'all' ||
+      (filterStatus === 'completed' && task.isDone) ||
+      (filterStatus === 'pending' && !task.isDone);
+
+    return matchesSearch && matchesStatus;
+  });
 
   const handleAddTask = (title: string, category: string) => {
     const newTask: Task = {
@@ -43,7 +55,12 @@ function App() {
           To-do List
         </h1>
         <CreateTask onSubmit={handleAddTask} />
-        <TaskFilters search={search} onChangeSearch={setSearch} />
+        <TaskFilters
+          search={search}
+          filterStatus={filterStatus}
+          onChangeSearch={setSearch}
+          onChangeStatus={setFilterStatus}
+        />
         <TaskList
           tasks={filteredTasks}
           onToggleDone={handleToggleDone}

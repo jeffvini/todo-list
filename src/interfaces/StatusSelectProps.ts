@@ -1,6 +1,4 @@
-export interface TaskFiltersProps {
-  search: string;
+export interface StatusSelectProps {
   filterStatus: 'all' | 'completed' | 'pending';
-  onChangeSearch: (value: string) => void;
   onChangeStatus: (status: 'all' | 'completed' | 'pending') => void;
 }
