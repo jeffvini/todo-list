@@ -12,19 +12,26 @@ function App() {
   const [filterStatus, setFilterStatus] = useState<
     'all' | 'completed' | 'pending'
   >('all');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
-  const filteredTasks = tasks.filter((task) => {
-    const matchesSearch = task.title
-      .toLowerCase()
-      .includes(search.trim().toLowerCase());
+  const filteredAndSortedTasks = tasks
+    .filter((task) => {
+      const matchesSearch = task.title
+        .toLowerCase()
+        .includes(search.trim().toLowerCase());
 
-    const matchesStatus =
-      filterStatus === 'all' ||
-      (filterStatus === 'completed' && task.isDone) ||
-      (filterStatus === 'pending' && !task.isDone);
+      const matchesStatus =
+        filterStatus === 'all' ||
+        (filterStatus === 'completed' && task.isDone) ||
+        (filterStatus === 'pending' && !task.isDone);
 
-    return matchesSearch && matchesStatus;
-  });
+      return matchesSearch && matchesStatus;
+    })
+    .sort((a, b) => {
+      return sortOrder === 'asc'
+        ? a.title.localeCompare(b.title)
+        : b.title.localeCompare(a.title);
+    });
 
   const handleAddTask = (title: string, category: string) => {
     const newTask: Task = {
@@ -58,11 +65,13 @@ function App() {
         <TaskFilters
           search={search}
           filterStatus={filterStatus}
+          sortOrder={sortOrder}
           onChangeSearch={setSearch}
           onChangeStatus={setFilterStatus}
+          onChangeSort={setSortOrder}
         />
         <TaskList
-          tasks={filteredTasks}
+          tasks={filteredAndSortedTasks}
           onToggleDone={handleToggleDone}
           onDeleteTask={handleDeleteTask}
         />
