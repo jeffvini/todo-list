@@ -7,8 +7,10 @@ import { SortButtons } from './SortButtons';
 export function TaskFilters({
   search,
   filterStatus,
+  sortOrder,
   onChangeSearch,
   onChangeStatus,
+  onChangeSort,
 }: TaskFiltersProps) {
   return (
     <section
@@ -28,7 +30,7 @@ export function TaskFilters({
             filterStatus={filterStatus}
             onChangeStatus={onChangeStatus}
           />
-          <SortButtons />
+          <SortButtons sortOrder={sortOrder} onChangeSort={onChangeSort} />
         </div>
       </form>
     </section>
