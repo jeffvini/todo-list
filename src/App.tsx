@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import type { Task } from './interfaces/Task';
 
@@ -6,8 +6,20 @@ import { CreateTask } from './components/CreateTask';
 import { TaskFilters } from './components/TaskFilters';
 import { TaskList } from './components/TaskList';
 
+const MY_TASKS = '@todo-app:my-tasks';
+
 function App() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    try {
+      const savedTasks = localStorage.getItem(MY_TASKS);
+
+      return savedTasks ? JSON.parse(savedTasks) : [];
+    } catch (error) {
+      console.error('Local storage is unavailable:', error);
+
+      return [];
+    }
+  });
   const [search, setSearch] = useState<string>('');
   const [filterStatus, setFilterStatus] = useState<
     'all' | 'completed' | 'pending'
@@ -32,6 +44,14 @@ function App() {
         ? a.title.localeCompare(b.title)
         : b.title.localeCompare(a.title);
     });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(MY_TASKS, JSON.stringify(tasks));
+    } catch (error) {
+      console.error('Local storage is unavailable:', error);
+    }
+  }, [tasks]);
 
   const handleAddTask = (title: string, category: string) => {
     const newTask: Task = {
